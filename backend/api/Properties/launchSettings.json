@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "azure_resume_challange": {
+      "commandName": "Project",
+      "commandLineArgs": "--port 7229",
+      "launchBrowser": false
+    }
+  }
+}
