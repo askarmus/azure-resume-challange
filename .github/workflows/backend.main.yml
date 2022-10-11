@@ -2,9 +2,9 @@ name: Deploy DotNet project to function app with a Windows environment
 
 on:
   push:
-      branches: [main]
-      paths:
-      - 'backends'
+      branches: [ main ]
+      path:
+      - 'backend'
 
 env:
   AZURE_FUNCTIONAPP_NAME: GetAskarResumeCount  # set this to your application's name
