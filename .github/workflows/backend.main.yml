@@ -4,7 +4,7 @@ on:
   push:
       branches: [ main ]
       path:
-      - 'backend'
+      - 'backend/**'
 
 env:
   AZURE_FUNCTIONAPP_NAME: GetAskarResumeCount  # set this to your application's name
