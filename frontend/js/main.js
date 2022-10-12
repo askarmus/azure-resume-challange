@@ -2,7 +2,6 @@ window.addEventListener('DOMContentLoaded', (event) => {
   getVisitCount();
 });
 
-
 const functionApi = 'https://getaskarresumecount.azurewebsites.net/api/GetAskarResumeCount?'; 
 
 const getVisitCount = () => {
