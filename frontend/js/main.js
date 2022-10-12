@@ -3,7 +3,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 });
 
 
-const functionApi = 'https://challengeresumeforbenny.azurewebsites.net/api/HttpTriggerBenny'; 
+const functionApi = 'https://getaskarresumecount.azurewebsites.net/api/GetAskarResumeCount?'; 
 
 const getVisitCount = () => {
   let count = 0;
@@ -12,7 +12,7 @@ const getVisitCount = () => {
       return response.json()
   })
   .then(response => {
-      count = response;
+      count = response.totalCount;
       document.getElementById('counter').innerText = count;
   }).catch(function(error) {
       console.log(error);
