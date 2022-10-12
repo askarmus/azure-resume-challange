@@ -4,6 +4,7 @@ using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
+using System.Net.Http;
 
 namespace Company.Function
 {
@@ -18,19 +19,23 @@ namespace Company.Function
     public static class GetAskarResumeCount
     {
         [FunctionName("GetAskarResumeCount")]
-        public static IActionResult Run(
+        public static HttpResponseMessage Run(
             [HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = null)] HttpRequest req,
-            [CosmosDB(databaseName: "azureresume", containerName: "counter", Connection = "CosmosConnectionString", Id = "1", PartitionKey ="1")] Counter counter,
-           // [CosmosDB(databaseName: "azureresume", containerName: "counter", Connection = "CosmosConnectionString", Id = "1", PartitionKey ="1")] out Counter updatedCounter,
+            [CosmosDB(databaseName: "azureresume", collectionName: "counter", ConnectionStringSetting = "CosmosConnectionString", Id = "1", PartitionKey ="1")] Counter counter,
+            [CosmosDB(databaseName: "azureresume", collectionName: "counter", ConnectionStringSetting = "CosmosConnectionString", Id = "1", PartitionKey ="1")] out Counter updatedCounter,
             ILogger log)
         {
 
-           // updatedCounter = counter;
-           // updatedCounter.Count += 1;
+           updatedCounter = counter;
+           updatedCounter.id = 1;
+           updatedCounter.Count = 20;
 
             log.LogInformation("C# HTTP trigger function processed a request.");
 
-            return new ObjectResult(new Counter() { Count = 10, id = 1 }); 
+            return new HttpResponseMessage(System.Net.HttpStatusCode.OK)
+            {
+                Content = new StringContent(JsonConvert.SerializeObject(counter), System.Text.Encoding.UTF8, "application/json")
+            };
         }
     }
 }
